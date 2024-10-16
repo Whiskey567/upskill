@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Подтверждение удаления{% endblock %}
+
+{% block content %}
+<h1>Удалить курс: {{ object.name }}</h1>
+<p>Вы уверены, что хотите удалить этот курс?</p>
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit">Удалить</button>
+</form>
+<a href="{% url 'course_detail' course.pk %}">Отмена</a>
+{% endblock %}

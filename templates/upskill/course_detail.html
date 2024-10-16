@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Детали курса{% endblock %}
+
+{% block content %}
+<h1>Описание курса: {{ object.name }}</h1>
+<p>{{ course.description|default:"Нет описания" }}</p>
+<h2>Список уроков:</h2>
+    {% for lesson in course.lessons.all %}
+        {{ lesson.subject }} {{ lesson.content|truncatechars:50}} 
+        <br>
+    {% endfor %}
+<br>    
+<a href="{% url 'course_update' course.pk %}">Редактировать</a>
+<a href="{% url 'course_delete' course.pk %}">Удалить</a>
+<a href="{% url 'courses_list' %}">Назад к списку</a>
+{% endblock %}

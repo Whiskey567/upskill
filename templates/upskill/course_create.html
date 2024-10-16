@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Опубликовать новый курс</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Создать курс</button>
+    </form>
+    <a href="{% url 'courses_list' %}">Назад к списку</a>
+{% endblock %}

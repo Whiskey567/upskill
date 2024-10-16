@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Список объектов{% endblock %}
+
+{% block content %}
+<h1>Список курсов</h1>
+<ul>
+    {% for course in courses %}
+        <li>
+            <img src="{{ course.course_picture.url }}" alt="Preview" height="200" width="200">
+            <a href="{% url 'course_detail' course.pk %}">{{ course.course_name}}</a>
+            ({{ course.description|default:"Нет описания"|truncatechars:100 }})
+        </li>
+    {% empty %}
+        <li>Нет объектов для отображения.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

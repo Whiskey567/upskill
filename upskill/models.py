@@ -22,6 +22,7 @@ class Course(models.Model):
     course_name = models.CharField(max_length=50, verbose_name='Название курса')
     description = models.TextField(verbose_name='Описание курса')
     price = models.IntegerField(verbose_name='Стоимость курса', validators=[MinValueValidator(0)])
+    course_picture = models.ImageField(upload_to='course_picture', verbose_name='Превью курса', blank=True, null=True)
     users = models.ManyToManyField(
         User,
         verbose_name='Зачисленные пользователи',
@@ -44,6 +45,7 @@ class Course(models.Model):
 class Lesson(models.Model):
     subject = models.CharField(max_length=50, verbose_name='Тема урока')
     content = models.TextField(verbose_name='Содержание урока')
+
     course = models.ForeignKey(
         Course,
         verbose_name='Курс',
