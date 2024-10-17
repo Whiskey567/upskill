@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ course.id|default:"Создание нового объекта" }}{% endblock %}
+{% block title %}{{ course.id|default:"Опубликовать новый курс" }}{% endblock %}
 
 {% block content %}
-<h1>{% if course.pk %}Редактирование объекта: {{ course.course_name }}{% else %}Создание нового объекта{% endif %}</h1>
+<h1>{% if course.pk %}Редактирование курса: {{ course.course_name }}{% else %}Создание нового курса{% endif %}</h1>
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}

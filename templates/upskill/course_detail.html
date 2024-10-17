@@ -5,7 +5,7 @@
 {% block content %}
 <h1>Описание курса: {{ object.name }}</h1>
 <p>{{ course.description|default:"Нет описания" }}</p>
-<h2>Список уроков:</h2>
+<h2>Программа обучения:</h2>
     {% for lesson in course.lessons.all %}
         {{ lesson.subject }} {{ lesson.content|truncatechars:50}} 
         <br>
