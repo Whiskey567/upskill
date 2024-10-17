@@ -1,5 +1,6 @@
 from django.contrib import admin
-from upskill import models
+from upskill_app import models
+
 
 @admin.register(models.User)
 class UserAdmin(admin.ModelAdmin):

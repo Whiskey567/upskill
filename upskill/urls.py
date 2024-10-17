@@ -15,17 +15,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.conf.urls.static import static
 
-from upskill import settings, views
+from upskill import settings
+
 
 urlpatterns = [
    path('admin/', admin.site.urls),
-   path('courses_list', views.CoursesList.as_view(), name='courses_list'),
-   path('courses/<int:pk>', views.CourseDetailView.as_view(), name='course_detail'),
-   path('courses/create', views.CourseCreateView.as_view(), name='course_create'),
-   path('courses/<int:pk>/update', views.CourseUpdateView.as_view(), name='course_update'),
-   path('courses/<int:pk>/delete', views.CourseDeleteView.as_view(), name='course_delete'),
+   path('', include('upskill_app.urls')),
 ] + static (settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
