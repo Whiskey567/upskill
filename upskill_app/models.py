@@ -66,10 +66,8 @@ class Lesson(models.Model):
 
 class Enrollment(models.Model):
     CHOICES = {
-        True:
-            'Завершен',
-        False:
-            'Не завершен'
+        (True,'Завершен'),
+        (False, 'Не завершен')
     }
     date_of_enrollment = models.DateTimeField(auto_now_add=True, verbose_name='Дата зачисления')
     completion_status = models.BooleanField(default=False, verbose_name='Статус завершения',

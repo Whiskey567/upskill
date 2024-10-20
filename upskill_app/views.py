@@ -1,15 +1,18 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
+from django_filters.views import FilterView
+
 
 from upskill_app.models import Course
+from upskill_app import filters
 
 
 
-
-class CoursesList(ListView):
+class CoursesList(FilterView):
    model = Course
    context_object_name = 'courses'
    template_name = 'upskill/courses_list.html'
+   filterset_class = filters.Course
 
 class CourseDetailView(DetailView):
    model = Course

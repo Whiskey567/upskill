@@ -1,18 +1,40 @@
 {% extends 'base.html' %}
+{% load bootstrap5 %}
 
 {% block title %}Список курсов{% endblock %}
 
+{% block sidebar %}
+    <div class="search-container">
+    
+    <form method="get" class="search-input" >
+        {% csrf_token %}
+        {{ filter.form.as_p }}
+        {% buttons %}
+            <button type="submit" class="search-button">Поиск</button>
+        {% endbuttons %}
+    </form>
+    </div>
+{% endblock %}
+
 {% block content %}
-<h1>Список курсов:</h1>
-<ul>
-    {% for course in courses %}
-        <li>
-            <img src="{{ course.course_picture.url }}" alt="Preview" height="200" width="200">
-            <a href="{% url 'course_detail' course.pk %}">{{ course.course_name}}</a>
-            ({{ course.description|default:"Нет описания"|truncatechars:100 }})
-        </li>
-    {% empty %}
-        <li>Нет курсов для отображения.</li>
-    {% endfor %}
-</ul>
+        <div class="container">
+        <h1 class="header">Список курсов</h1>
+        <div class="course-list">
+            {% for course in courses %}
+                <div class="course-item">
+                <a href="{% url 'course_detail' course.pk %}">
+                        <img src="{{ course.course_picture.url }}" class="course-image">
+
+                    <div class="course-info">
+                        <h2 class="course-title">{{ course.course_name }}</h2>
+                        <p class="course-price">Цена: {{ course.price }} руб.</p>
+                        ({{ course.description|default:"Нет описания"|truncatechars:100 }})
+                    </div>
+                </a>
+                </div>
+            {% empty %}
+                <p>Курсы не найдены.</p>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

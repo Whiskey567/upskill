@@ -3,6 +3,7 @@
 {% block title %}Детали курса{% endblock %}
 
 {% block content %}
+<img src="{{ course.course_picture.url }}" class="course-image">    
 <h1>Описание курса: {{ object.name }}</h1>
 <p>{{ course.description|default:"Нет описания" }}</p>
 <h2>Программа обучения:</h2>
