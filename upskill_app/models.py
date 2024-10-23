@@ -20,8 +20,8 @@ class User(models.Model):
 
 class Course(models.Model):
     course_name = models.CharField(max_length=50, verbose_name='Название курса')
-    description = models.TextField(verbose_name='Описание курса')
-    price = models.IntegerField(verbose_name='Стоимость курса', validators=[MinValueValidator(0)])
+    description = models.TextField(verbose_name='Описание курса', blank=True, null=True)
+    price = models.IntegerField(verbose_name='Стоимость курса', validators=[MinValueValidator(0)], blank=True, null=True)
     course_picture = models.ImageField(upload_to='course_picture', verbose_name='Превью курса', blank=True, null=True)
     users = models.ManyToManyField(
         User,

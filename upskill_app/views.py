@@ -39,4 +39,4 @@ class CourseUpdateView(UpdateView):
 class CourseDeleteView(DeleteView):
    model = Course
    template_name = 'upskill/course_confirm_delete.html'
-   success_url = reverse_lazy('course_list')
+   success_url = reverse_lazy('courses_list')
