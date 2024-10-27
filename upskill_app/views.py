@@ -1,11 +1,39 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
 from django_filters.views import FilterView
+from rest_framework import viewsets
+
+from upskill_app.models import Course, User, Lesson, Enrollment, Payment, Quiz, Result
+from upskill_app import filters, serializers
 
 
-from upskill_app.models import Course
-from upskill_app import filters
+class UserAPI(viewsets.ModelViewSet):
+   queryset = User.objects.all()
+   serializer_class = serializers.User
 
+class CourseAPI(viewsets.ModelViewSet):
+   queryset = Course.objects.all()
+   serializer_class = serializers.Course
+
+class LessonAPI(viewsets.ModelViewSet):
+   queryset = Lesson.objects.all()
+   serializer_class = serializers.Lesson
+
+class EnrollmentAPI(viewsets.ModelViewSet):
+   queryset = Enrollment.objects.all()
+   serializer_class = serializers.Enrollment
+
+class PaymentAPI(viewsets.ModelViewSet):
+   queryset = Payment.objects.all()
+   serializer_class = serializers.Payment
+
+class QuizAPI(viewsets.ModelViewSet):
+   queryset = Quiz.objects.all()
+   serializer_class = serializers.Quiz
+
+class ResultsAPI(viewsets.ModelViewSet):
+   queryset = Result.objects.all()
+   serializer_class = serializers.Result
 
 
 class CoursesList(FilterView):
